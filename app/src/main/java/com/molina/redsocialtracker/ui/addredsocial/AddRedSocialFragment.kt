@@ -5,12 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.molina.redsocialtracker.R
+import com.molina.redsocialtracker.databinding.FragmentAddRedSocialBinding
+import com.molina.redsocialtracker.ui.viewmodel.RedSocialViewModel
 
 
 class AddRedSocialFragment : Fragment() {
 
+private lateinit var binding: FragmentAddRedSocialBinding
 
+    private val socialViewModel: RedSocialViewModel by activityViewModels<RedSocialViewModel> {
+        RedSocialViewModel.Factory
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,9 +28,39 @@ class AddRedSocialFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_red_social, container, false)
+        binding  = FragmentAddRedSocialBinding.inflate(inflater, container , false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setViewModel()
+        observerStatus()
+    }
+
+
+    private fun setViewModel(){
+        binding.viewmodel = socialViewModel
+    }
+
+
+    private fun observerStatus(){
+        socialViewModel.status.observe(viewLifecycleOwner){
+            when{
+                it.equals(RedSocialViewModel.WRONG)->{
+
+                    socialViewModel.clearStatus()
+                }
+                it.equals(RedSocialViewModel.CREATED)->{
+
+
+                    socialViewModel.clearStatus()
+                    findNavController().popBackStack()
+                }
+            }
+        }
+    }
+
 
 
 }

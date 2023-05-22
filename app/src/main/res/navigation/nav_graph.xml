@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.molina.redsocialtracker.ui.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_addRedSocialFragment"
+            app:destination="@id/addRedSocialFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_redSocialFragment"
+            app:destination="@id/redSocialFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addRedSocialFragment"
+        android:name="com.molina.redsocialtracker.ui.addredsocial.AddRedSocialFragment"
+        android:label="AddRedSocialFragment" >
+        <action
+            android:id="@+id/action_addRedSocialFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/redSocialFragment"
+        android:name="com.molina.redsocialtracker.ui.redsocial.RedSocialFragment"
+        android:label="RedSocialFragment" >
+        <action
+            android:id="@+id/action_redSocialFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+</navigation>
