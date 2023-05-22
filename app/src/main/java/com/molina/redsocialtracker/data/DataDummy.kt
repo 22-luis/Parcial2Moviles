@@ -8,7 +8,7 @@ const val user = "22-luis"
 const val name2 = "Kevin"
 const val user2 = "K3v1n"
 
-var sociales = mutableListOf(
+var socials = mutableListOf(
     RedSocialModel(name,user),
     RedSocialModel(name2,user2),
 )
