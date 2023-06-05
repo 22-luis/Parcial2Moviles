@@ -18,13 +18,8 @@ class RedSocialFragment : Fragment() {
 
     private lateinit var binding: FragmentRedSocialBinding
 
-    private val socialViewModel: RedSocialViewModel by activityViewModels<RedSocialViewModel> {
+    private val socialViewModel: RedSocialViewModel by activityViewModels {
         RedSocialViewModel.Factory
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -34,8 +29,16 @@ class RedSocialFragment : Fragment() {
         binding  = FragmentRedSocialBinding.inflate(inflater, container , false)
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setViewModel()
+    }
     private fun setViewModel(){
+
         binding.viewmodel = socialViewModel
+
     }
 
 

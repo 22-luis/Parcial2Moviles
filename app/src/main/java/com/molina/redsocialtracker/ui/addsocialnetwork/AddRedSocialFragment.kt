@@ -16,12 +16,8 @@ class AddRedSocialFragment : Fragment() {
 
 private lateinit var binding: FragmentAddRedSocialBinding
 
-    private val socialViewModel: RedSocialViewModel by activityViewModels<RedSocialViewModel> {
+    private val socialViewModel: RedSocialViewModel by activityViewModels {
         RedSocialViewModel.Factory
-    }
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -34,15 +30,15 @@ private lateinit var binding: FragmentAddRedSocialBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         setViewModel()
         observerStatus()
-    }
 
+    }
 
     private fun setViewModel(){
         binding.viewmodel = socialViewModel
     }
-
 
     private fun observerStatus(){
         socialViewModel.status.observe(viewLifecycleOwner){
@@ -53,9 +49,9 @@ private lateinit var binding: FragmentAddRedSocialBinding
                 }
                 it.equals(RedSocialViewModel.CREATED)->{
 
-
                     socialViewModel.clearStatus()
                     findNavController().popBackStack()
+
                 }
             }
         }
